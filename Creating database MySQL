@@ -1,0 +1,80 @@
+CREATE TABLE Address( Address_ID int(10)NOT NULL, Address varchar(40)NOT NULL, Zip varchar(10)NOT NULL, PRIMARY KEY (Address_ID)
+);
+CREATE TABLE Genre(
+Genre_ID int(10),
+Genre_Name varchar(40)NOT NULL,PRIMARY KEY (Genre_ID) );
+
+
+CREATE TABLE Movie (
+Movie_ID int(10)NOT NULL,
+Title varchar(40)NOT NULL,
+Genre_ID int(10),
+Format_Type varchar(40)NOT NULL,
+PRIMARY KEY (Movie_ID),
+CONSTRAINT FOREIGN KEY (Genre_ID) REFERENCES Genre(Genre_ID)
+);
+
+CREATE TABLE Inventory (
+Inventory_ID int(10)NOT NULL,
+Movie_ID int(10)NOT NULL,
+PRIMARY KEY (Inventory_ID),
+FOREIGN KEY (Movie_ID) REFERENCES Movie(Movie_ID)
+);
+
+CREATE TABLE Employee ( 
+Employee_ID int(10)NOT NULL,
+FirstName varchar(40)NOT NULL,
+LastName varchar(40)NOT NULL,
+ReportsTo varchar(40)NOT NULL, 
+Phone varchar(20)NOT NULL,
+Email varchar(40)NOT NULL, 
+Position varchar(40)NOT NULL,
+Gender varchar(40)NOT NULL,
+DOB DATE NOT NULL,
+PRIMARY KEY (Employee_ID)
+);
+
+CREATE TABLE Customer ( 
+Customer_ID int(10)NOT NULL,
+FirstName varchar(40)NOT NULL,
+LastName varchar(40)NOT NULL, 
+Address_ID int(10)NOT NULL,
+PRIMARY KEY (Customer_ID)
+);
+
+CREATE TABLE Payment (
+TransactionNum int(10)NOT NULL,
+CustomerID int(10)NOT NULL, 
+PaymentDate DATE NOT NULL,
+Amount int(10)NOT NULL,
+PaymentMethod varchar(40)NOT NULL,
+PRIMARY KEY (TransactionNum) );
+
+CREATE TABLE Order_(
+Order_number int(10),
+Customer_ID int(10),
+Customer_name varchar(40)NOT NULL, 
+Rental_date DATE,
+Rental_return DATE,
+Inventory_ID int(10)NOT NULL,
+TransactionNum int(10)NOT NULL,
+Employee_ID int(10),
+PRIMARY KEY (Order_number),
+FOREIGN KEY (Employee_ID) REFERENCES Employee(Employee_ID), 
+FOREIGN KEY (Inventory_ID) REFERENCES Inventory(Inventory_ID), 
+FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID), 
+FOREIGN KEY (TransactionNum) REFERENCES Payment(TransactionNum)
+);
+
+CREATE TABLE Refund ( 
+Refund_number int(10)NOT NULL,
+Customer_ID int(10)NOT NULL,
+Order_number int(10)NOT NULL,
+Refund_complete DATE NOT NULL,
+Refund_start DATE NOT NULL,
+TransactionNum int(10),
+PRIMARY KEY (Refund_number),
+FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
+FOREIGN KEY (TransactionNum) REFERENCES Order_(TransactionNum)
+);
+
