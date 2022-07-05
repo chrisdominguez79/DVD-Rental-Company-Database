@@ -1,0 +1,80 @@
+select * from Address;
+select * from Customer;
+select * from Employee;
+select * from Genre;
+select * from Inventory; 
+select * from Movie;
+select * from Order_;
+select * from Payment;
+select * from Refund;
+
+SELECT
+    Count(Employee_ID) Total_Employees
+FROM
+    Employee;
+    
+SELECT
+    COUNT(Genre_Name) Num_Of_Genre
+FROM
+    Genre;
+
+SELECT
+    AVG(Amount) Average_Amount
+FROM
+    Payment;
+    
+SELECT 
+COUNT(DISTINCT Employee_ID) AS "Num of Employee doing transaction" 
+FROM 
+	Order_;
+
+SELECT
+COUNT(Customer_ID) AS "Num Of Customer"
+FROM Customer;
+
+SELECT 
+COUNT(*) as "People reinbursed on 4/26/22" 
+FROM 
+Refund
+WHERE Refund_complete ="2022-04-26";
+
+SELECT 
+COUNT(DISTINCT Format_Type) AS "Formats available " 
+FROM 
+	Movie;
+    
+SELECT 
+COUNT(Zip) AS "In Houston" 
+FROM 
+	Address
+WHERE
+Zip = 77002;
+    
+SELECT  Movie.Title,Genre.Genre_ID,Genre.Genre_Name
+FROM Movie
+LEFT JOIN Genre
+ON Movie.Genre_ID = Genre.Genre_ID;
+
+SELECT  Customer.FirstName,Customer.LastName,Address.Address,Address.Zip,Address.Address_ID
+FROM Customer
+LEFT JOIN Address
+ON Customer.Address_ID = Address.Address_ID;
+
+SELECT  Inventory.Movie_ID,Inventory.Amount,Movie.Title,Movie.Format_Type
+FROM Inventory
+LEFT JOIN Movie
+ON Inventory.Movie_ID = Movie.Movie_ID;
+
+SELECT  Order_.Customer_ID,Order_.Customer_name,Order_.TransactionNum,Employee.FirstName,Employee.lastName,Employee.Employee_ID
+FROM Order_
+LEFT JOIN Employee
+ON Order_.Employee_ID = Employee.Employee_ID;
+
+SELECT  Refund.Refund_number,Refund.Refund_complete,Refund.Refund_start,Refund.TransactionNum,Payment.Amount
+FROM Payment
+RIGHT JOIN Refund
+ON Payment.TransactionNum = Refund.TransactionNum;
+
+SELECT FirstName,LastName
+FROM Customer
+WHERE Customer_ID=900123121 and FirstName = 'Christian';
