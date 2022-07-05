@@ -1,0 +1,113 @@
+INSERT INTO Customer(Customer_ID,FirstName,LastName,Address_ID)
+VALUES
+("900123121","Christian","Dominguez","1"),
+("900123122","Nicol","Gutierrez","2"),
+("900123123","Jose","Antonio","3"),
+("900123124","Judith","Cedeno","4"),
+("900123125","Manuel","Cervantes","5"),
+("900123126","Simon","Salgado","6"),
+("900123127","Jonathan","Rodriguez","7"),
+("900123128","Adan","Cardenas","8");
+
+INSERT INTO Genre(Genre_ID,Genre_Name) 
+VALUES
+("1","Horror"),
+("2","Comedy"),
+("3","Fantasy"),
+("4","Action"),
+("5","Romance"),
+("6","Sports");
+
+INSERT INTO Employee(Employee_ID,FirstName,LastName,ReportsTo,Phone,Email,Position,Gender,DOB) 
+VALUES
+("1005","Cristiano","Ronaldo","Owner","(936)419-8558","CR7@gmail.com","Manager","Male","1985-02-05"),
+("10","Lionel","Messi","No-one","(936)419-8510","Meeeeeessi@gmail.com","Owner","Male","1987-06-24"),
+("01","Christian","Antonio","Manager","(936)419-8501","CA6@gmail.com","Associate","Male","1999-05-05"),
+("02","Marco","Solis","Manager","(936)419-8502","MS12@gmail.com","Associate","Male","2002-07-15"),
+("11","Zlatan","Ibrahimovic","Owner","(936)419-8511","Lion11@gmail.com","Manager","Male","1981-10-03");
+
+
+
+INSERT INTO Movie (Movie_ID, Title, Genre_ID,Format_Type)
+VALUES(10000,"Insidious","1","Bluray"),
+(10001,"The Conjouring","1","Bluray"),
+(10002,"Scream","1","Bluray"),
+(20000,"Up","2","DVD"),
+(20001,"Spy","2","DVD"),
+(20002,"Guardians of the Galaxy Vol.2","2","DVD"),
+(30000,"Eternals","3","4K"),
+(30001,"Doctor Strange","3","4K"),
+(30002,"Luca","3","4K"),
+(40000,"Avengers:Endgame","4","Bluray"),
+(40001,"Black Panther","4","Bluray"),
+(40002,"Logan","4","Bluray"),
+(50000,"Top Hat","5","Bluray"),
+(50001,"Marty","5","Bluray"),
+(50002,"Vertigo","5","Bluray"),
+(60000,"Undefeated","6","Bluray"),
+(60001,"Rocky","6","Bluray"),
+(60002,"Creed 2","6","Bluray");
+
+
+INSERT INTO Address(Address_ID,Address,Zip) 
+VALUES
+(1,"338 Falcon Sprint St.","77447"),
+(2,"1 Main","77002"),
+(3,"338 Falcon Sprint St.","77447"),
+(4,"338 Falcon Sprint St.","77447"),
+(5,"5 Main","77002"),
+(6,"6 Main","77002"),
+(7,"7 Main","77002"),
+(8,"8 Main","77002");
+
+#ALTER TABLE Inventory
+#  ADD Amount int(40) NOT NULL
+#    AFTER Movie_ID; Used to be able to add the Amount tab 
+    
+INSERT INTO Inventory(Inventory_ID,Movie_ID,Amount)
+VALUES(123320,10000,100),
+(123321,10001,20),
+(123322,10002,10),
+(123323,20000,50),
+(123324,20001,100),
+(123325,20002,35),
+(123326,30000,50),
+(123327,30001,60),
+(123328,30002,1),
+(123329,40000,17),
+(123330,40001,18),
+(123331,40002,90),
+(123332,50000,80),
+(123333,50001,70),
+(123334,50002,30),
+(123335,60000,35),
+(123336,60001,23),
+(123337,60002,61);
+
+INSERT INTO Payment(TransactionNum,Customer_ID,PaymentDate,Amount,PaymentMethod)
+VALUES
+(1,900123121,"2022-04-26",10,"Cash"),
+(2,900123125,"2022-04-26",15,"Cash"),
+(3,900123122,"2022-04-26",25,"Debit Card"),
+(4,900123127,"2022-04-26",20,"Credit Card"),
+(5,900123123,"2022-04-26",5,"Cash"),
+(6,900123124,"2022-04-26",15,"Cash"),
+(7,900123126,"2022-04-26",15,"Cash"),
+(8,900123128,"2022-04-26",15,"Cash");
+INSERT INTO Order_(Order_number,Customer_ID,Customer_name,Rental_date,Rental_return,Inventory_ID,TransactionNum,Employee_ID)
+VALUES
+(1,"900123121","Christian Dominguez","2022-04-26","2022-04-27",123320,1,10),
+(2,"900123122","Nicol Gutierrez","2022-04-26","2022-04-28",123321,2,11),
+(3,"900123123","Jose Antonio","2022-04-26","2022-04-26",123322,3,10),
+(4,"900123124","Judith Cedeno","2022-04-26","2022-04-26",123325,4,11),
+(5,"900123125","Manuel Cervantes","2022-04-26","2022-04-29",123327,5,11),
+(6,"900123126","Simon Salgado","2022-04-26","2022-04-30",123329,6,2),
+(7,"900123127","Jonathan Rodriguez","2022-04-26","2022-04-27",123330,7,2),
+(8,"900123128","Adan Cardenas","2022-04-26","2022-04-27",123330,8,2);
+
+INSERT INTO Refund(Refund_number,Customer_ID,Order_number,Refund_complete,Refund_start,TransactionNum)
+VALUES
+(10000,900123121,1,"2022-04-27","2022-04-26",1),
+(10001,900123122,2,"2022-04-28","2022-04-26",3),
+(10002,900123123,3,"2022-04-26","2022-04-26",5),
+(10003,900123124,4,"2022-04-26","2022-04-26",6);
